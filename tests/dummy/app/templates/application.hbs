@@ -6,7 +6,7 @@
 {{#paper-content}}
 	{{#paper-card as |card|}}
 		{{#card.content}}
-			{{#paper-data-table sortProp="name" sortDir="desc" selectable=true as |table|}}
+			{{#paper-data-table onChangeSort=(action "onChangeSort") sortProp="name" sortDir="desc" selectable=true as |table|}}
 				{{#table.head as |head|}}
 					{{#head.column checkbox=true}}
 						{{#paper-checkbox disabled=true onChange=null}}{{/paper-checkbox}}
@@ -55,6 +55,20 @@
 						{{/body.row}}
 					{{/each}}
 				{{/table.body}}
+        {{#table.foot as |foot|}}
+          {{#foot.row edit=false as |row|}}
+            {{#row.cell}}{{/row.cell}}
+            {{#row.cell}}{{/row.cell}}
+            {{#each totals as |total|}}
+              {{#row.cell numeric=true}}
+                {{total}}
+              {{/row.cell}}
+            {{/each}}
+            {{#row.cell}}{{/row.cell}}
+            {{#row.cell}}{{/row.cell}}
+            {{#row.cell}}{{/row.cell}}
+          {{/foot.row}}
+        {{/table.foot}}
 			{{/paper-data-table}}
 			{{paper-data-table-pagination
 				limit=limit
